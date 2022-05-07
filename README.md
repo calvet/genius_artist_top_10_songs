@@ -12,12 +12,12 @@ Feito com Flask, Redis e DynamoDB.
 Linux e Windows
 
 ### Como configurar o ambiente:
-• Configure o arquivo ".env" na pasta raíz do projeto com as seguintes informações:
+• Renomeie o arquivo ".env.example" para ".env" e configure o mesmo na pasta raíz do projeto, substituindo as seguintes informações:
 ```
 FLASK_ENV=production
 DEBUG=False
 
-GENIUS_ACCESS_TOKEN= ** GENIUS API ACCES TOKEN **
+GENIUS_ACCESS_TOKEN=** GENIUS API ACCES TOKEN **
 
 REDIS_HOST=** REDIS HOST ADDRESS **
 REDIS_PORT=** REDIS PORT NUMBER **
