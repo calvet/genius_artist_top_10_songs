@@ -1,4 +1,4 @@
-# genius_artist_top_10_songs
+# Top 10 Músicas mais tocadas por Artista
 Integração com a API do Genius para capturar as top 10 músicas mais tocadas de algum artista.
 Feito com Flask, Redis e DynamoDB.
 
