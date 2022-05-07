@@ -13,6 +13,7 @@ Linux e Windows
 
 ### Como configurar o ambiente:
 • Renomeie o arquivo ".env.example" para ".env" e configure o mesmo na pasta raíz do projeto, substituindo as seguintes informações:
+
 ```
 FLASK_ENV=production
 DEBUG=False
@@ -28,9 +29,11 @@ AWS_SECRET_ACCESS_KEY=** AWS SECRET ACCESS KEY **
 ```
 
 • Após configurar o arquivo ".env", você precisará instalar os requisitos do projeto com o seguinte comando:
+
 ```pip install -r requirements.txt```
 
 • Pronto! Configurado. Se tudo deu certo nos passos anteriores, agora você só precisa abrir o "Command Prompt" ou "bash" e rodar o seguinte comando na pasta:
+
 ```flask run```
 ou simplesmente:
 ```python -m app.py```
@@ -42,6 +45,7 @@ ou simplesmente:
 
 ### Retorno dos dados da API:
 - Se sua requisição funcionou corretamente, você receberá o seguinte retorno (exemplo):
+
 ```
 {
   "artist_name": "David Guetta",
@@ -62,6 +66,6 @@ ou simplesmente:
 }
 ```
 
-~ opcionalmente: você pode adicionar no parâmetro da URL a seguinte flag "?cache=False", assim evitará de trazer dados em cache ~
+~ opcionalmente: você pode adicionar no parâmetro da URL a seguinte flag ```?cache=False```, assim evitará de trazer dados em cache ~
 
 
