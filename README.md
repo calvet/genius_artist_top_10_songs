@@ -65,8 +65,9 @@ ou simplesmente:
   "status": "success"
 }
 ```
+
 - Caso contrário, você receberá uma mensagem similar a esta com o campo "status" marcado como "error", exemplo:
-- 
+
 ```
 {
   "artist_name": null,
@@ -76,6 +77,7 @@ ou simplesmente:
   ],
   "status": "error"
 }
+```
 
 ~ opcionalmente: você pode adicionar no parâmetro da URL a seguinte flag ```?cache=False```, assim evitará de trazer dados em cache ~
 
