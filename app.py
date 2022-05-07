@@ -32,7 +32,7 @@ def get_artist_top_songs(artist_name):
         return jsonify(
             {
                 'status': 'success',
-                'message': f'Foi encontrado as top {len(artist_data["song_list"])} musicas deste artista!',
+                'message': f'Foram encontrados as top {len(artist_data["song_list"])} musicas deste artista!',
                 'artist_name': artist_data['artist_name'],
                 'songs_list': artist_data['song_list']
             }
@@ -49,4 +49,4 @@ def get_artist_top_songs(artist_name):
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5050)
+    app.run(host='127.0.0.1', port=5000)
