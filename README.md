@@ -30,7 +30,7 @@ AWS_SECRET_ACCESS_KEY=** AWS SECRET ACCESS KEY **
 • Após configurar o arquivo ".env", você precisará instalar os requisitos do projeto com o seguinte comando:
 ```pip install -r requirements.txt```
 
-• Pronto! Configurado. Se tudo deucerto nos passos anteriores, agora você só precisa abrir o "Command Prompt" ou "bash" e rodar o seguinte comando na pasta:
+• Pronto! Configurado. Se tudo deu certo nos passos anteriores, agora você só precisa abrir o "Command Prompt" ou "bash" e rodar o seguinte comando na pasta:
 ```flask run```
 ou simplesmente:
 ```python -m app.py```
@@ -41,7 +41,7 @@ ou simplesmente:
 (substitua NOME_DO_ARTISTA pelo nome do seu artista favorito)
 
 ### Retorno dos dados da API:
-- Se tudo der certo com sua requisição, você receberá o seguinte retorno (exemplo):
+- Se sua requisição funcionou corretamente, você receberá o seguinte retorno (exemplo):
 ```
 {
   "artist_name": "David Guetta",
