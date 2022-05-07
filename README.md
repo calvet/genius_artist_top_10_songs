@@ -46,16 +46,17 @@ ou simplesmente:
 {
   "artist_name": "David Guetta",
   "message": "Foram encontrados as top 10 musicas deste artista!",
+  "search_term": "David Guetta",
   "songs_list": [
-          "2U by David Guetta (Ft. Justin Bieber)",
-          "One Last Time by Ariana Grande",
-          "Lovesick Girls by BLACKPINK",
-          "So Far Away by Martin Garrix & David Guetta (Ft. Jamie Scott & Romy Dya)","Titanium by David Guetta (Ft. Sia)",
-          "Hey Mama by David Guetta (Ft. Afrojack, Bebe Rexha & Nicki Minaj)",
-          "Goodbye by Jason Derulo & David Guetta (Ft. Nicki Minaj & Willy William)",
-          "Say My Name by David Guetta, Bebe Rexha & J Balvin",
-          "I Gotta Feeling by Black Eyed Peas",
-          "Flames by David Guetta & Sia"
+    "2U by David Guetta (Ft. Justin Bieber)",
+    "One Last Time by Ariana Grande",
+    "Lovesick Girls by BLACKPINK",
+    "So Far Away by Martin Garrix & David Guetta (Ft. Jamie Scott & Romy Dya)","Titanium by David Guetta (Ft. Sia)",
+    "Hey Mama by David Guetta (Ft. Afrojack, Bebe Rexha & Nicki Minaj)",
+    "Goodbye by Jason Derulo & David Guetta (Ft. Nicki Minaj & Willy William)",
+    "Say My Name by David Guetta, Bebe Rexha & J Balvin",
+    "I Gotta Feeling by Black Eyed Peas",
+    "Flames by David Guetta & Sia"
   ],
   "status":"success"
 }
