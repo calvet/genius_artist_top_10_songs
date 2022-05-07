@@ -1,74 +1,51 @@
 import os
+from dotenv import load_dotenv
+from flask import Flask, jsonify, request
+from utils.GeniusArtist import GeniusArtist
 
-from uuid import uuid4
-from Artist import Artist
-from flask import Flask, request, jsonify
-
+load_dotenv()
 
 app = Flask(__name__)
 
 GENIUS_ACCESS_TOKEN = os.getenv('GENIUS_ACCESS_TOKEN')
 
+artist = GeniusArtist()
 
-artist = Artist()
 
+@app.route('/api/v1/get_artist_top_songs/<artist_name>')
+def get_artist_top_songs(artist_name):
+    try:
+        artist_name = artist_name.strip()
 
-@app.route('/api/v1/get_artist_top_songs/<artist_name>/<quantity>')
-def get_artist_top_songs(artist_name, quantity):
-    artist_name = artist_name.strip()
-    # quantity = int()
+        if 3 > len(artist_name) > 100:
+            raise Exception('O nome pesquisado é inválido! [mínimo 3, máximo 100 caracteres]')
 
-    # cache = request.args.get('cache')
+        cache_param = request.args.get('cache')
 
-    if not quantity.isdigit() or 1 > int(quantity) > 100:
-        return jsonify(
-            {
-                'status': 'error',
-                'message': 'Quantidade inválida de musicas! (minimo 1, maximo 100)',
-                'songs_list': []
-            }
-        )
+        cache = False if cache_param is not None and cache_param == 'False' else True
 
-    if len(artist_name) < 3:
-        return jsonify(
-            {
-                'status': 'error',
-                'message': 'Nome de artista inválido! (minimo 3 caracteres)',
-                'songs_list': []
-            }
-        )
-
-    # if cache:
-
-    status, artist_id = artist.get_artist_id(artist_name)
-
-    if not status:
-        return jsonify(
-            {
-                'status': 'error',
-                'message': 'Não foi possível encontrar este artista!',
-                'songs_list': []
-            }
-        )
-    else:
-        status, song_list = artist.get_artist_top_songs(artist_id, quantity)
+        status, artist_data = artist.get_artist_top_songs(artist_name, cache)
 
         if not status:
-            return jsonify(
-                {
-                    'status': 'error',
-                    'message': 'Não foi possível encontrar musicas deste artista!',
-                    'songs_list': []
-                }
-            )
-        else:
-            return jsonify(
-                {
-                    'status': 'success',
-                    'message': f'Foi encontrado as top {len(song_list)} musicas deste artista!',
-                    'songs_list': song_list
-                }
-            )
+            raise Exception('Não foi possível encontrar musicas deste artista!')
+
+        return jsonify(
+            {
+                'status': 'success',
+                'message': f'Foi encontrado as top {len(artist_data["song_list"])} musicas deste artista!',
+                'artist_name': artist_data['artist_name'],
+                'songs_list': artist_data['song_list']
+            }
+        )
+    except Exception as e:
+        return jsonify(
+            {
+                'status': 'error',
+                'message': e,
+                'artist_name': None,
+                'songs_list': []
+            }
+        )
 
 
 if __name__ == '__main__':
