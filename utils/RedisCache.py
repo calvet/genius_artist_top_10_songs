@@ -4,28 +4,32 @@ from redis import Redis
 
 class RedisCache:
     def __init__(self):
-        self.client = Redis(
-            host=os.getenv('REDIS_HOST'),
-            port=int(os.getenv('REDIS_PORT'))
-        )
-        self.days_expire = 60 * 60 * 24 * int(os.getenv('REDIS_DAYS_EXPIRE'))
-
-    def get_artist(self, artist_name):
         try:
-            if self.client.exists(artist_name):
-                return self.client.get(artist_name)
+            self.client = Redis(
+                host=os.getenv('REDIS_HOST'),
+                port=int(os.getenv('REDIS_PORT'))
+            )
+
+            self.days_expire = 60 * 60 * 24 * int(os.getenv('REDIS_DAYS_EXPIRE'))
+        except Exception as e:
+            print(e)
+
+    def get_item(self, item_name):
+        try:
+            if self.client.exists(item_name):
+                return self.client.get(item_name)
         except Exception as e:
             print(e)
 
         return None
 
-    def set_artist(self, artist_name, artist_data):
+    def set_item(self, item_name, item_data):
         try:
-            if self.client.exists(artist_name):
-                self.client.delete(artist_name)
+            if self.client.exists(item_name):
+                self.client.delete(item_name)
 
-            self.client.set(artist_name, str(artist_data))
+            self.client.set(item_name, str(item_data))
 
-            self.client.expire(artist_name, self.days_expire)
+            self.client.expire(item_name, self.days_expire)
         except Exception as e:
             print(e)

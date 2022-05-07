@@ -5,6 +5,7 @@ import requests
 import unidecode
 from utils.RedisCache import RedisCache
 import requests.packages.urllib3.exceptions
+from utils.DynamoDatabase import DynamoDatabase
 
 requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
@@ -15,19 +16,18 @@ class GeniusArtist:
 
         self.redis_cache = RedisCache()
 
+        self.dynamo_db = DynamoDatabase()
+
     def get_artist_top_songs(self, artist_input_name, cache):
         if cache:
-            artist_cache = self.redis_cache.get_artist(artist_input_name)
+            artist_cache = self.redis_cache.get_item(artist_input_name)
 
             if artist_cache is not None:
-                print('Está utilizando cache!')
                 artist_cache = artist_cache.decode('utf-8')
                 artist_cache = str(artist_cache).replace("'", '"')
                 artist_cache = json.loads(artist_cache)
 
                 return True, artist_cache
-
-        print('Nao está utilizando cache!')
 
         song_status, artist_data = self.get_artist_songs(artist_input_name, 10, 1)
 
@@ -108,7 +108,8 @@ class GeniusArtist:
 
             artist_dict['song_list'] = songs_list
 
-            self.redis_cache.set_artist(search_term, artist_dict)
+            self.redis_cache.set_item(search_term, artist_dict)
+            self.dynamo_db.set_item(search_term, artist_dict)
 
             return True, artist_dict
         except Exception as e:
