@@ -62,9 +62,20 @@ ou simplesmente:
     "I Gotta Feeling by Black Eyed Peas",
     "Flames by David Guetta & Sia"
   ],
-  "status":"success"
+  "status": "success"
 }
 ```
+- Caso contrário, você receberá uma mensagem similar a esta com o campo "status" marcado como "error", exemplo:
+- 
+```
+{
+  "artist_name": null,
+  "message": "O nome pesquisado e invalido! [minimo 3, maximo 30 caracteres]",
+  "search_term": "dv",
+  "songs_list": [
+  ],
+  "status": "error"
+}
 
 ~ opcionalmente: você pode adicionar no parâmetro da URL a seguinte flag ```?cache=False```, assim evitará de trazer dados em cache ~
 
