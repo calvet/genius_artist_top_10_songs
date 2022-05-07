@@ -17,8 +17,8 @@ def get_artist_top_songs(artist_name):
     try:
         artist_name = artist_name.strip()
 
-        if 3 > len(artist_name) > 100:
-            raise Exception('O nome pesquisado é inválido! [mínimo 3, máximo 100 caracteres]')
+        if len(artist_name) < 3 or len(artist_name) > 30:
+            raise Exception('O nome pesquisado e invalido! [minimo 3, maximo 30 caracteres]')
 
         cache_param = request.args.get('cache')
 
@@ -27,11 +27,12 @@ def get_artist_top_songs(artist_name):
         status, artist_data = artist.get_artist_top_songs(artist_name, cache)
 
         if not status:
-            raise Exception('Não foi possível encontrar musicas deste artista!')
+            raise Exception('Nao foi possivel encontrar musicas deste artista!')
 
         return jsonify(
             {
                 'status': 'success',
+                'search_term': artist_name,
                 'message': f'Foram encontrados as top {len(artist_data["song_list"])} musicas deste artista!',
                 'artist_name': artist_data['artist_name'],
                 'songs_list': artist_data['song_list']
@@ -41,7 +42,8 @@ def get_artist_top_songs(artist_name):
         return jsonify(
             {
                 'status': 'error',
-                'message': e,
+                'search_term': artist_name,
+                'message': str(e),
                 'artist_name': None,
                 'songs_list': []
             }
